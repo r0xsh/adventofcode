@@ -12,17 +12,16 @@
 # Lose = 0
 
 defmodule Rochambeau do
-
-
   def parse(buffer) do
     buffer
     |> String.split("\n", trim: true)
-    |> Enum.map(&(tour(&1)))
+    |> Enum.map(&tour(&1))
     |> Enum.sum()
   end
 
   defp tour(buffer) do
     [a, b] = String.split(buffer, " ")
+
     case {parse_move(a), parse_move(b)} do
       {1, 3} -> 3
       {3, 1} -> 7
@@ -39,7 +38,6 @@ defmodule Rochambeau do
       move in ["C", "Z"] -> 3
     end
   end
-
 end
 
 {:ok, file} = File.read("input")
